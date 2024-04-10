@@ -1,5 +1,35 @@
 import React from 'react';
 
+export const SortIcon = ({ flipped }) => {
+  return (
+    <svg
+      width="20px"
+      className={flipped && 'scale-y-[-1]'}
+      height="20px"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path d="M4 16L13 16" stroke="#1C274C" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M6 11H13" stroke="#1C274C" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M8 6L13 6" stroke="#1C274C" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M17 4L17 20L20 16" stroke="#1C274C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+};
+
+export const FilterIcon = () => {
+  return (
+    <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M15 10.5A3.502 3.502 0 0 0 18.355 8H21a1 1 0 1 0 0-2h-2.645a3.502 3.502 0 0 0-6.71 0H3a1 1 0 0 0 0 2h8.645A3.502 3.502 0 0 0 15 10.5zM3 16a1 1 0 1 0 0 2h2.145a3.502 3.502 0 0 0 6.71 0H21a1 1 0 1 0 0-2h-9.145a3.502 3.502 0 0 0-6.71 0H3z"
+        fill="#000000"
+      />
+    </svg>
+  );
+};
+
 export const MagnifierIcon = () => {
   return (
     <svg aria-hidden="true" height="20" width="20">

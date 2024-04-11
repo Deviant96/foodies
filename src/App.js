@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import MainWrapper from './components/MainWrapper';
 import FilterBar from './components/FilterBar';
+import FoodList from './components/FoodList';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <Header />
       <MainWrapper className="container mx-auto mt-2 mb-4 py-2 px-4 md:py-3">
         <FilterBar />
-        Halo
+        <FoodList />
       </MainWrapper>
       <Footer />
     </div>

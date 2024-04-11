@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const SortIcon = ({ flipped }) => {
+const SortIcon = ({ flipped }) => {
   return (
     <svg
       width="20px"
@@ -17,7 +17,7 @@ export const SortIcon = ({ flipped }) => {
   );
 };
 
-export const FilterIcon = () => {
+const FilterIcon = () => {
   return (
     <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -30,7 +30,7 @@ export const FilterIcon = () => {
   );
 };
 
-export const MagnifierIcon = () => {
+const MagnifierIcon = () => {
   return (
     <svg aria-hidden="true" height="20" width="20">
       <path
@@ -42,3 +42,13 @@ export const MagnifierIcon = () => {
     </svg>
   );
 };
+
+const CloseIcon = () => {
+  return (
+    <svg className="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+  );
+};
+
+export { CloseIcon, SortIcon, FilterIcon, MagnifierIcon };

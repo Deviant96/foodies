@@ -25,7 +25,7 @@ const FilterPillBox = ({ label, isActive, icon, onClick, totalFilter }) => {
   return (
     <div className={combinedClasses} onClick={onClick}>
       {totalFilter > 0 && (
-        <span className="p-2 rounded-full bg-[#f15700] text-white relative w-5 h-5">
+        <span className="p-2 rounded-full bg-[#f15700] text-white relative w-5 h-5" onClick={onClick}>
           <span className="absolute left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4">{totalFilter}</span>
         </span>
       )}

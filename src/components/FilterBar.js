@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FilterPillBox from './FilterPillBox';
+import FilterDropdown from './FilterDropdown';
 
 const FilterBar = () => {
-  const handleFilterClick = () => {
-    console.log('Main filter click');
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const handleFilterClick = e => {
+    setShowDropdown(true);
+  };
+
+  const handleCloseDropdown = () => {
+    setShowDropdown(false);
   };
 
   const dummyLabels = [
@@ -55,6 +62,7 @@ const FilterBar = () => {
           />
         ))}
       </div>
+      <FilterDropdown onClose={handleCloseDropdown} isOpen={showDropdown} />
     </div>
   );
 };

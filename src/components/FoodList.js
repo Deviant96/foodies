@@ -3,6 +3,7 @@ import PlaceholderFoodList from './PlaceholderFoodList';
 import FoodCard from './FoodCard';
 import FoodModal from './FoodModal';
 import { fetchFoodItems } from '../services/api';
+import { useFilters } from '../contexts/FiltersContext';
 
 const FoodList = () => {
   const [foodItems, setFoodItems] = useState([]);
@@ -10,6 +11,7 @@ const FoodList = () => {
   const [itemsPerPage] = useState(9);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedFoodItem, setSelectedFoodItem] = useState(null);
+  const { sortBy, selectedArea } = useFilters();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -19,8 +21,18 @@ const FoodList = () => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const data = await fetchFoodItems();
-        setFoodItems(data.meals);
+        let area = 'Indian';
+        if (selectedArea) {
+          area = selectedArea;
+        }
+        const data = await fetchFoodItems(area);
+        let sortedItems = data.meals;
+        if (sortBy === 'asc') {
+          sortedItems.sort((a, b) => a.strMeal.localeCompare(b.strMeal));
+        } else if (sortBy === 'desc') {
+          sortedItems.sort((a, b) => b.strMeal.localeCompare(a.strMeal));
+        }
+        setFoodItems(sortedItems);
       } catch (error) {
         setError('There is a trouble when getting food list');
       } finally {
@@ -29,7 +41,7 @@ const FoodList = () => {
     };
 
     fetchData();
-  }, []);
+  }, [sortBy, selectedArea]);
 
   const handlePagination = pageNumber => {
     setCurrentPage(pageNumber);
@@ -47,7 +59,8 @@ const FoodList = () => {
   // Calculate food items for pagination
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  let currentItems = foodItems.slice(indexOfFirstItem, indexOfLastItem);
+  let poolItems = foodItems;
+  let currentItems = poolItems.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
     <div className="food-list">

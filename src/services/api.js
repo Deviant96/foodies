@@ -7,8 +7,8 @@ const fetchFoodItem = async id => {
   return response.json();
 };
 
-const fetchFoodItems = async () => {
-  const apiUrl = 'https://www.themealdb.com/api/json/v1/1/filter.php?a=Indian';
+const fetchFoodItems = async area => {
+  const apiUrl = `https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`;
   const response = await fetch(apiUrl);
   if (!response.ok) {
     throw new Error('Failed to fetch food items');

@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { areas } from '../data/areas';
+import { useFilters } from '../contexts/FiltersContext';
 
 const FilterDropdown = ({ isOpen, onClose, onClick }) => {
+  const { selectArea, selectedArea } = useFilters();
   const dropdownRef = useRef(null);
   const [filterSelectedArea, setFilterSelectedArea] = useState(null);
 
@@ -10,17 +12,25 @@ const FilterDropdown = ({ isOpen, onClose, onClick }) => {
   };
 
   const onApplyFilter = () => {
+    if (filterSelectedArea) {
+      selectArea(filterSelectedArea);
+    }
     onClose(false);
   };
 
   const handleClearSelection = () => {
     onClose(false);
+    selectArea(null);
     setFilterSelectedArea(null);
   };
 
   const handleClickDropdownOverlay = () => {
     onClose(isOpen);
   };
+
+  useEffect(() => {
+    setFilterSelectedArea(selectedArea);
+  }, [selectedArea]);
 
   useEffect(() => {
     // Trying to place the dropdown below the button

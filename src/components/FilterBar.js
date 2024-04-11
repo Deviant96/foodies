@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FilterPillBox from './FilterPillBox';
 import FilterDropdown from './FilterDropdown';
+import { useFilters } from '../contexts/FiltersContext';
 
 const FilterBar = () => {
+  const { sortBy, toggleSort, totalFiltersApplied } = useFilters();
   const [showDropdown, setShowDropdown] = useState(false);
+  const [filterActiveSortBy, setFilterActiveSortBy] = useState(false);
 
   const handleFilterClick = e => {
     setShowDropdown(true);
@@ -18,12 +21,13 @@ const FilterBar = () => {
       icon: 'filter',
       label: 'Filter',
       onClick: handleFilterClick,
-      totalFilter: 2,
+      totalFilter: totalFiltersApplied,
     },
     {
-      active: true,
+      active: filterActiveSortBy,
       icon: 'sort',
       label: 'Sort AZ',
+      onClick: toggleSort,
     },
     {
       label: 'Fast Delivery',
@@ -47,6 +51,10 @@ const FilterBar = () => {
       label: 'Less than Rs.300',
     },
   ];
+
+  useEffect(() => {
+    setFilterActiveSortBy(sortBy === 'desc' && true);
+  }, [sortBy]);
 
   return (
     <div className="w-full overflow-x-scroll" style={{ scrollbarWidth: 'none' }}>

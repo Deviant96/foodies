@@ -15,7 +15,7 @@ const FilterPillBox = ({ label, isActive, icon, onClick, totalFilter }) => {
       iconComponent = <FilterIcon />;
       break;
     case 'sort':
-      iconComponent = isActive ? <SortIcon /> : <SortIcon flipped={true} />;
+      iconComponent = isActive ? <SortIcon flipped={true} /> : <SortIcon />;
       break;
     default:
       iconComponent = null;
